@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+    <queries>
+        <package android:name="moe.shizuku.privileged.api" />
+        <package android:name="dev.uzair.flagtest" />
+    </queries>
+    <application android:name=".SecureCapApp" android:label="SecureCap"
+        android:icon="@drawable/ic_launcher" android:roundIcon="@drawable/ic_launcher"
+        android:theme="@style/AppTheme" android:allowBackup="false" android:supportsRtl="true">
+        <meta-data android:name="moe.shizuku.client.V3_SUPPORT" android:value="true" />
+        <provider android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku" android:exported="true"
+            android:enabled="true" android:multiprocess="false"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PreviewActivity" android:exported="false" />
+        <service android:name=".CaptureService" android:exported="false" />
+        <service android:name=".CaptureTileService" android:label="SecureCap"
+            android:icon="@drawable/ic_capture" android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter><action android:name="android.service.quicksettings.action.QS_TILE" /></intent-filter>
+            <meta-data android:name="android.service.quicksettings.ACTIVE_TILE" android:value="true" />
+        </service>
+    </application>
+</manifest>

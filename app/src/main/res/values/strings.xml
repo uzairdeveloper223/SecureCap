@@ -1,0 +1,4 @@
+<resources>
+    <string name="floating_on_start">Show floating controls on start</string>
+    <string name="author_credit">Built by Uzair Mughal</string>
+</resources>
